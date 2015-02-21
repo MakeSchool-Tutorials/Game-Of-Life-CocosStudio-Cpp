@@ -171,17 +171,17 @@ Set up code connections
 Let's start with the labels - we need code connections in order to
 update the label values as the game state changes. Select the top label,
 go to the Code Connections view (second button on the top of the right
-panel), and create a code connection called *\_populationLabel* - be
+panel), and create a code connection called *populationLabel* - be
 sure to choose *Doc root var* from the dropdown box and leave the
 *Custom Class* field blank!
 
 ![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-Label_Code_Connection.png)
 
 Now do the same thing for the second label, but call the connection
-*\_generationLabel*.
+*generationLabel*.
 
 We also want to create a connection for our grid. Select the grid on the
-stage and create a connection called *\_grid* in the same way you
+stage and create a connection called *grid* in the same way you
 created connections for the labels.
 
 Next we have to tell SpriteBuilder which methods to call when our

@@ -1,7 +1,7 @@
 ---
 title: Get Started with SpriteBuilder!
 slug: get-started-with-spritebuilder
----       
+---
 
 Installation
 ============

@@ -3,7 +3,7 @@ title: What's the Game of Life?
 slug: what-game-of-life
 ---
 
-In this tutorial you are going to familiarize yourself with Objective-C
+In this tutorial you are going to familiarize yourself with Swift
 and a game development tool called SpriteBuilder by making a mobile
 version of Conway's Game of Life. If you've never heard of Conway's Game
 of Life,
