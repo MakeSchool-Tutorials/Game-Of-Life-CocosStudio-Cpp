@@ -30,7 +30,7 @@ content of the file with this:
     	var isAlive: Bool = false   
     	var livingNeighborsCount = 0
   
-    	convenience init() {
+    	convenience override init() {
       		
     	}
     }
@@ -42,8 +42,8 @@ the creature with a creature image - we will be implementing this next.
 
 Modify *Creature.swift* by adding the following two lines to init:
 
-    convenience init() {
-    	self.init(imageNamed: "Assets/bubble.png")
+    convenience override init() {
+    	self.init(imageNamed: "GameOfLifeAssets/Assets/bubble.png")
     	anchorPoint = CGPoint(x: 0, y: 0)	
     }
 
@@ -82,6 +82,8 @@ Replace the code in *Grid.swift* with the following:
 		private var cellWidth: CGFloat = 0
 		private var cellHeight: CGFloat = 0
 		private var gridArray: [[Creature]]!
+		
+		// Add Grid methods below here
 	}
 
 Here's what these lines do: We define two constants (*GridRows* and *GridColumns*) that describe the amount of
@@ -93,7 +95,7 @@ soon. The other two variables *generation* and *totalAlive* will be
 used to store the current game stats that will be displayed in the game.
 
 Now let's set up the grid! When the Grid class gets loaded a method
-called *onEnter* is called. Let's implement this method in *Grid.m* and
+called *onEnter* is called. Let's implement this method in *Grid.swift* (after the `// Add Grid methods below here comment`) and
 call the *setupGrid* method we are going to write next:
 
 	override func onEnter() {
@@ -158,7 +160,7 @@ class that is a CCNode or inherits from it will automatically call a
 method called touchBegan when the player touches it. All we need to do
 is create a touchBegan method and it will get called automatically
 (because we set *userInteractionEnabled* to *true* earlier)! Add the
-following method to your Grid.m:
+following method to your Grid.swift:
 
 	override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
 		var touchLocation = touch.locationInNode(self)
@@ -250,8 +252,7 @@ Evolve!
 Now for the tricky part. We need to implement the *evolveStep* method in
 *Grid.swift*.
 
-First, add an *evolveStep* method declaration to *Grid.swift*.  It takes no parameters and has no return type.
-
+First, add an *evolveStep* method declaration to *Grid.swift*.  It takes no parameters and has no return type.  Unlike the other functions, you should not use the *private* keyword because we will be calling this method from a class outside of *Grid*.
 According to the rules of the Game of Life, we need to count how many
 live neighbors every cell has every step. If it has 0-1 live neighbors
 the Creature on that cell dies or stays dead. If it has 2-3 live
@@ -326,9 +327,7 @@ and see if they behave as expected.
 
 The only thing that should be missing is the count of live Creatures. To
 make the label update properly, reset the *totalAlive* property at the
-beginning of your *updateCreatures* method by setting it to 0. Inside the
-loop that checks if creatures are alive you need to increment *totalAlive*
-by 1 for every creature that is alive.
+beginning of your *updateCreatures* method by setting it to 0. Create an if statement at the end of the for loop that checks if creatures are alive, if they are you need to increment *totalAlive* by 1.
 
 Run the game again - you should be done!
 

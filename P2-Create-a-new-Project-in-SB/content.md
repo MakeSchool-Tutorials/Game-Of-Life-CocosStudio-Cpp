@@ -7,10 +7,20 @@ Let's get to work by creating a new SpriteBuilder project:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_NewProject.png)
 
-Name your new project “GameOfLife”. Once the project is created, open
+Name your new project “GameOfLife”. Make sure you select Swift as your primary language:
+
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Swift/GOL-NewProject-Swift.png)
+
+Once the project is created, open
 Finder and take a look at the folder structure of your project. If you
 can't find your project in Finder, search for it using Spotlight at the
-top right of your screen. The folder structure should look something
+top right of your screen. 
+To open the folder, right click and Show Package Contents:
+
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Swift/GOL-ShowPackageContents-Swift.png)
+
+
+The folder structure should look something
 like this:
 
 ![image](http://static.makegameswith.us.s3.amazonaws.com/media/tutorial_media/2015/01/13/sbGoLCreation.png)

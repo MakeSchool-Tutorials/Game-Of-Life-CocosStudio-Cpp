@@ -48,7 +48,7 @@ assets for your game. You will create interface files for the different
 scenes in your game. The interface files are called .ccb files, named
 after SpriteBuilder's predecessor CocosBuilder. SpriteBuilder also
 allows you to create *code connections*. With code connections you can
-create links between .ccb files and Objective-C classes. This means you
+create links between .ccb files and Swift classes. This means you
 can add behavior to your game's objects in SpriteBuilder *and* in code -
 we will discuss this concept in depth later.
 
