@@ -3,8 +3,8 @@ title: What's the Game of Life?
 slug: what-game-of-life
 ---
 
-In this tutorial you are going to familiarize yourself with Swift
-and a game development tool called SpriteBuilder by making a mobile
+In this tutorial you are going to familiarize yourself with C++
+and a game development tool called Cocos Studio by making a mobile
 version of Conway's Game of Life. If you've never heard of Conway's Game
 of Life,
 [Wikipedia](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) has a
