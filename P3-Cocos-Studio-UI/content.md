@@ -1,81 +1,33 @@
 ---
-title: SpriteBuilder's User Interface
-slug: spritebuilder-user-interface
+title: Cocos Studio's User Interface
+slug: cocos-studio-user-interface
 ---       
 
-Let's take a tour of SpriteBuilder's User Interface before we finally
-delve into creating our game.
+Let's take a quick tour of Cocos Studio's user interface before we delve into creating our game.
 
-The interface is divided into 4 main sections:
+The interface is divided into five main sections:
 
-![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/SBUI.png)
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/cocosStudioUI.png)
 
-1.  *Resource/Component Browser*: Here you can see the different
-    resources and scenes you have created or added to your project. You
-    can also select different types of Nodes and drag them into your
-    scene.
-2.  *Stage*: The stage will preview your current scene. Here you can
-    arrange all of the Nodes that belong to a scene.
-3.  *Timeline*: The timeline is used to create animations within
-    SpriteBuilder. We will look at that in a lot of detail later on.
-4.  *Detail View*: Once you select a node in your scene, this detail
-    view will display a lot of editable information about that node. You
-    can modify positions, content (the text of a label, for example) and
-    physics properties.
+1.  *Objects Browser* - This is where you
+    can select different types of objects and drag them into your scene.
+2.  *Resources Browser* - Here you can see the resources, scenes and custom nodes you have created or added to your project. These can be dragged into the current scene. You can rearrange the resources on your filesystem, and add new resources to your project by clicking the + button in the lower left-hand corner.
+3.  *Stage* - The stage is a preview your current scene. Here you can
+    arrange the nodes that belong to a scene.  You can preview 	 different screen resolutions with the dropdown above the Objects 	 Browser.
+4.  *Properties Pane* - When you select a node in your scene, this properties
+    pane will display a lot of editable information about that node. You
+    can modify positions, anchor points, content 
+    (the text of a label, for example) and other properties. The *Advanced* tab allows you to create code connections: interface points with your code. For example, buttons can have custom callback methods, a chunk of code that is executed when the button is clicked.
+5.  *Animation Timeline* - The timeline is used to create animations within
+    Cocos Studio. We will look at this in more detail later on.
 
-Let's take a closer look at the most important views.
-
-File View
-=========
-
-The first tab in the resource/component browser (labelled as section 1
-in the image above) represents the *File View*. It lists all the .ccb
-files and resources you have added:
-
-![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_FileView.png)
-
-In this view you can add new resources and restructure your project's
-folder hierarchy.
-
-Node Library
-============
-
-The third tab is the *Node Library*:
-
-![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_NodeView.png)
-
-This panel shows you all available node types you can use to construct
-your gameplay scenes and menus.
-
-Inspector
-=========
-
-The first tab of the Detail View (labelled as section 4 in the above
-image) is the Inspector. Once you have selected an object on your stage
-you can use this panel to modify many of its properties, like position
-and color:
-
-![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_Inspector.png)
-
-Code Connections
-================
-
-The second tab on the right panel let's you manage code connections for
-your selected node. One of the things you can do here is set custom
-Objective-C classes for your nodes:
-
-![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_CodeConnections.png)
 
 Publishing to Xcode
 ===================
 
-You already have used this button when testing your first project. Using
-the button in the top left corner, you publish your changes in your
-Spritebuilder project to your Xcode project. Whenever you changed your
-SpriteBuilder project and want to run it, you should hit this button
-before building the Xcode project:
+Every time you make a change to your Cocos Studio project, you must *publish* it so that your changes are reflected in the Xcode project.  The first time you publish, you should click *Publish and Package...* and select the *Publish to Xcode* radio button. Every subsequent time you publish, you can click *Publish Using Last Setting* in the dropdown.  Remember to publish every time you make a change!
 
-![image](https://s3.amazonaws.com/mgwu-misc/Spritebuilder+Tutorial/Spritebuilder_Publish.png)
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/publishButton.png)
 
-**Now you're ready to add content to your very first SpriteBuilder
+**Now you're ready to add content to your very first Cocos Studio
 game!**
