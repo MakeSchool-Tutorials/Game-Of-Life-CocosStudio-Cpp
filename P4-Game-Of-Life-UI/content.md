@@ -39,6 +39,8 @@ First, ensure that the anchor point is set to (0.5, 0.5). The anchor point is a 
 
 Now set the background position to be expressed in *%Relative percentage of parent container* by clicking the dropdown that says *Px*. Then set the values to (50, 50). This will set the background's position to (50, 50) of the parent node. By expressing the position of the background in percentages instead of absolute coordinates we make our layout more flexible. That's because, even if the parent node's size changes, the background will remain the middle.
 
+Finally, set the background *scale* to 120% horizontal and 120% vertical. This will ensure that the background is large enough to cover the screen on all iPhones.
+
 ![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/positionRelative.png)
 
 Create Layout Panels
