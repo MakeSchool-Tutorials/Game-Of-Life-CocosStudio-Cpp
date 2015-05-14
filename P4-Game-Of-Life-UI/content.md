@@ -3,206 +3,128 @@ title: Create the Game of Life's User Interface
 slug: game-of-life-ui
 ---       
 
-We are going to use SpriteBuilder for this game and in the first step we
-will set up the user interface. Once we are done with this chapter the
-UI of the game will look like this:
+Now it's time to create the interface for the game in Cocos Studio. Once you are done with this chapter the UI of the game will look like this:
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF_SpriteBuilder_UI.png)
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/finalUI.png)
 
-Getting started
+Getting Started
 ===============
 
 Get started by downloading our [art
-pack](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GameOfLifeAssets.zip)
+pack](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/Assets.zip)
 for this game.
 
-After you unpacked it, drag the *GameOfLifeAssets* folder into your
-SpriteBuilder project onto the left panel. This will automatically add
-the resources to your project.
+After you have unzipped it, drag the *Assets* folder into your
+Cocos Studio project onto the Resources Browser in left panel. Alternatively you can right click in the Resources Browser and *Import Resources...*.
+	
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/rightClickImport.png)
 
-We won't create a tablet version of this game and the assets are
-provided in iPhone retina resolution (2x). We need to change a project
-setting to tell SpriteBuilder that the assets we are using are provided
-in 2x resolution:
+After importing the assets, your Resources Browser should look like this
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/SpriteBuilder_Autoscaling.png)
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/assetsExpanded.png)
 
-Now open *MainScene.ccb* and highlight CCNodeGradient in the timeline.
-Hit the delete key. Do the same for CCLabelTTF - you should end up with
-a black screen. Note that you cannot delete the root CCNode.
+Now open *MainScene.csd* and highlight Default in the timeline.
+Hit the delete key - you should end up with a black screen. You just deleted the default background image, but note that you cannot delete the root Scene. 
 
-Add a background image
+In the Resources Browser in the left panel, find *HelloWorld.png* and delete it - you don't need it anymore.
+
+Add a Background Image
 ======================
 
-Drag *background.png* to the stage of *MainScene.ccb*. We want to center
-the background so set the anchor point to (0.5, 0.5) and choose the
-position to be expressed *in % of parent container* - and choose 50% for
-both X and Y position:
+Drag *background.png* to the stage of *MainScene.csd*. We want to center the background in the scene. To do that, we'll set the *anchor point* and *position* properties of the background image.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-CenteredBackground.png)
+The *anchor point* is the point inside that the node that will be moved to whatever *position* coordinates you specify. It's also the point around which the object will be rotated when you modify the *rotation* property.
 
-You can test that the background is centered correctly by changing the
-resolution of the stage. That feature gives you a preview of how your
-game will look on different device types. Choose *Document-\>Resolution*
-to switch between *Phone Landscape* and *Phone Landscape (short)*:
+First, ensure that the anchor point is set to (0.5, 0.5). The anchor point is a coordinate inside the object - it's expressed in percentages from 0 to 1.  In this case, (0.5, 0.5) means (50%, 50%) which will place the anchor point in the middle of the background. 
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/ChangeRes.gif)
+Now set the background position to be expressed in *%Relative percentage of parent container* by clicking the dropdown that says *Px*. Then set the values to (50, 50). This will set the background's position to (50, 50) of the parent node. By expressing the position of the background in percentages instead of absolute coordinates we make our layout more flexible. That's because, even if the parent node's size changes, the background will remain the middle.
 
-Your background image should stay centered in both resolution modes.
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/positionRelative.png)
 
-Creating a grid
-===============
-
-We will create the grid in a separate CCB-File because it will be linked
-to a custom class later on. Create a new CCB-File (File\>New\>File) of
-type Sprite and call it *Grid.ccb*:
-
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-Grid_Sprite.png)
-
-Select the *CCSprite* root node of *Grid.ccb* in the timeline and set
-the *Sprite Frame* to *grid.png* in the right panel. Also set the anchor
-point to (1, 0.5):
-
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-Grid_Setup.png)
-
-We set the anchor point to (1, 0.5) because we want to position the grid
-from the right edge of the screen.
-
-**Make sure to save (cmd+s) or your grid will not display correctly
-later on!**
-
-Add the grid to the MainScene
-=============================
-
-Now open *MainScene.ccb* again by double clicking on it and drag
-*Grid.ccb* onto the stage. This will add the grid as Sub-CCB-File to the
-MainScene. Now change the positioning of the grid:
-
--   choose the top right corner as reference corner (the first of the
-    three dropdown boxes)
--   set the y position to be expressed in *% of parent container*
--   choose a position of (10,50)
-
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-AddGrid.png)
-
-This means the grid will be positioned 10 points from the right edge and
-it will be vertically centered. You can again test by switching between
-the different resolutions.
-
-Add a container node for the left panel
-=======================================
-
-As you can see on the screenshot at the beginning of this tutorial we
-will have a couple of UI elements on the left side of the screen. We
-want all of them to be centered. To achieve this we are going to use a
-little layout trick and a *CCNode* that will not be visible but only be
-used to center other nodes inside of it.
-
-Add a *CCNode* to your scene by choosing a Node from the Node Library View. Set the width to be defined in *Width
-insets in point*. This means the Node will have the size of the parent
-node **minus** the value you defined as width. This is ideal for our
-User Interface because we can setup the left node to take up all space
-not used by the grid. Set the height to be 100% of the parent container:
-
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-Layout_Node.png)
-
-Before you move on, double check that your size settings are exactly the
-same as shown in the screenshot. When you test with different
-resolutions you should see how the left node resizes, always taking all
-the space that is not used by the grid.
-
-Layout Box & Buttons
+Create Layout Panels
 ====================
 
-We have a couple different elements that we need to add to the left
-panel and they all need to be placed one below the other. Instead of
-doing this manually we can use a nice Cocos2d component called
-*CCLayoutBox*.
+To help ensure that our UI resizes dynamically for various screen resolutions, we're going to use two *Panels* which are a type of *Container Node*.  We will have a left panel for the play button, pause button, labels and microscope, and a right panel that will hold the grid.  
 
-Drag a Node called *Box Layout* to your scene - make sure you add it as
-a child of the left container node we just created. Set the anchor point
-to (0.5, 0.5) and x and y to 50% of the parent container - this will
-center the *Box Layout* in the left Node. Also set the *layout
-direction* to *vertical* so that the Nodes are arranged one below the
-other:
+Drag a Panel container from the Objects Browser in the left panel. Set the anchor point to (0, 0.5), the position to *%Relative percentage of parent container* and the postion to (0, 50).  This will pin the panel to the middle left of the screen.  Set the size to *%Relative percentage of parent container* and (20, 100). Finally, change the name to *leftPanel*. In the code we'll refer to the objects created in Cocos Studio by their names, so it's important that we give them good ones.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-BoxLayout.png)
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/leftPanelSettings.png)
 
-Great! Now it is time to set up your game's UI!
+Now we'll create the right panel. Drag another Panel container into the scene from the Objects Browser. Set the anchor point to (0, 0.5). Set the position to *%Relative percentage of parent container* and (20, 50). Set the size to *%Relative percentage of parent container* and (80, 100). Change the name to *rightPanel*.
 
-Go to the Node Library (left panel, third tab) and find the Button node.
-Add 2 buttons to the layout box. Set the anchor point of both butons to
-(0.5, 0.5).
+So now your timeline should look like this:
 
-Now go to your resources and add *balloon.png* and *microscope.png* to
-the layout box. Reorder the elements so that they appear in the same
-order as displayed in the image below. To do so you have to reorder the
-elements in the timeline.
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/panelsSetup.png)
 
-Finally, increase the *Spacing* on the *CCLayoutBox* to 8 points.
+Creating a Grid
+===============
+
+We will create the grid in a separate .csd file because it will be linked to a custom class later on. Create a new .csd file *File --> New File* of type *Node* and call it *Grid*.
+
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/newGrid.png)
+
+Find Grid.png in the Resource Browser and drag it into the your newly created Node. Set the position to (0, 0) to center it.
+
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/gridImage.png)
+
+**Make sure to save your newly created file (cmd + s) or your grid will not display correctly later on!**
+
+Add the Grid to the MainScene
+=============================
+
+Now open *MainScene.csd* again by double clicking on it. 
+
+Drag *Grid.csd* onto the stage. This will add the grid to the
+MainScene. Rename it to gridNode. In the timeline, drag gridNode to become a child of rightPanel. 
+
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/gridNodeChild.png)
+
+Set the position of gridNode to (50%, 50%).
+
+Game UI
+====================
+
+Great! Now it is time to set up your game's UI! We're going to add the play and pause buttons, the game labels and the microscope sprite to the scene.  All of these will go on the left side of the screen, so make sure they're children of leftPanel.
+
+Drag two buttons (you can find them in the Widgets section of the Objects Browser) into the scene. Name one *btnPlay* and the other *btnPause*. Make sure they both have an anchor point of (0.5, 0.5).  Set the size of both to (140px, 76px). Position btnPlay at (50%, 88%) and btnPause at (50%, 75%). Delete the default "Button" text for both.
+
+Double click the *Normal State* property for btnPlay. Navigate to and select play.png. 
+
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/btnPlayNavigation.png)
+
+For *Press State* select play-pressed.png. Do the same for btnPause with pause.png and pause-pressed.png.
+
+Now go to your resources and add *balloon.png* and *microscope.png* to leftPanel. Set the anchor points of both to (0.5, 0.5). Name the balloon sprite "balloon" without the quotes.  Position balloon at (50%, 52%). Position the microscope at (50%, 20%).  
 
 When you are done it should look like this:
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF_LeftNodeStructure.png)
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/gameUIPreLabels.png)
 
-Now set the correct images for the buttons. You need to remove the
-title, set the preferred size to the full size of the image (70,35) and
-set the sprite frames for the *Normal State* (play.png and pause.png)
-and the *Highlighted State* (play-pressed.png and pause-pressed.png):
+In the next step add four labels as children of the balloon, these will form our scoreboard. To do so, go back to the Objects Browser, find the Widget called *Label* (not *BitmapLabel*), and drag one of them onto the scene. Scroll down to the bottom of the label's properties and click the *Font file* button. Select Courier New Bold.ttf from the Fonts directory. Set the size to 20, and the color to #0D9F00. Copy and paste that label 3 times, then fill out the labels according to the following table.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-Buttons.png)
+| Label Name      | Label Text | Position   |
+|-----------------|------------|------------|
+| populationLabel | Population | (52%, 75%) |
+| populationCount | 0          | (52%, 59%) |
+| generationLabel | Generation | (52%, 40%) |
+| generationCount | 0          | (52%, 23%) |
 
-In the next step add four labels as children of the balloon, these will
-form our scoreboard. To do so, go back to the Node Library, find the
-Node type called *Label TTF*, and drag four of them onto the balloon in
-your timeline. Adjust the labels to match the screenshot:
+When you're done it should look like this:
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF_Labels.png)
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/labels.png)
 
-Great! Now the UI is set and autoresizes nicely for 3.5-inch and 4-inch
-phones. Now it's time to set up code connections before we switch to
-Xcode and you start implementing the actual game. We want to tell
-SpriteBuilder how this UI you've created will interact with the classes
-and methods we will implement in code.
+Great! Now it's time to set up code connections before we switch to Xcode and you start implementing the actual game. We want to tell Cocos Studio how this UI you've created will interact with the classes and methods we will implement in code.
 
-Set up code connections
+Set Up Code Connections
 =======================
 
-Let's start with the labels - we need code connections in order to
-update the label values as the game state changes. Select the top label,
-go to the Code Connections view (second button on the top of the right
-panel), and create a code connection called *populationLabel* - be
-sure to choose *Doc root var* from the dropdown box and leave the
-*Custom Class* field blank!
+Now we have to tell Cocos Studio which methods to call when our
+buttons are touched. Select *btnPlay*, go to the Advanced view (second button on the top of the right panel). Under callback method, select *Touch* in the dropdown, and type *play* in the text box on the right.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-Label_Code_Connection.png)
-
-Now do the same thing for the second label, but call the connection
-*generationLabel*.
-
-We also want to create a connection for our grid. Select the grid on the
-stage and create a connection called *grid* in the same way you
-created connections for the labels.
-
-Next we have to tell SpriteBuilder which methods to call when our
-buttons are touched.
-
-Set the selector *play* for the play button. Make sure to select the
-*Document root* as target:
-
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-Play_Button.png)
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/playCallback.png)
 
 **Repeat this step and set the selector *pause* for the pause button.**
 
-Now for the very last step in SpriteBuilder! Open *Grid.ccb* in your
-resources by double clicking on it and set a custom class *Grid* for the
-root node:
+Now save, and publish to Xcode.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-CustomClassGrid.png)
-
-Now save, publish (File\>Publish) and open your Xcode project!
-
-Your Xcode project is contained inside of your SpriteBuilder project in
-Finder. If you don't remember where you saved it, search for your
-project name in Spotlight (magnifying glass at the top right of your
-Mac's screen)
+Your Xcode project is contained inside the *proj.ios_mac* sub-directory in the directory where your Cocos Studio project lives. If you don't remember where you saved it, search for your project name in Spotlight (magnifying glass at the top right of your Mac's screen).
