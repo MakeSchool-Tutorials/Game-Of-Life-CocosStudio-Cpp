@@ -69,6 +69,12 @@ Find Grid.png in the Resource Browser and drag it into the your newly created No
 
 ![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/gridImage.png)
 
+Change the name of the newly-dragged grid sprite to *grid*.
+
+The way it is now, *Grid.csd* is just a normal `Node`, but we want to be able to write custom code for it. To do that, we need to assign it a class. To do that, first click the root `Node` (the highest object in the timeline). Then, on the properties panel, switch to the advanced tab. In the custom class field, type *Grid*. Later, we'll make the `Grid` class in code.
+
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/gridCustomClass.png)
+
 **Make sure to save your newly created file (cmd + s) or your grid will not display correctly later on!**
 
 Add the Grid to the MainScene
