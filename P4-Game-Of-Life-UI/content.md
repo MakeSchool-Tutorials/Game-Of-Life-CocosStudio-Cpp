@@ -135,4 +135,19 @@ buttons are touched. Select *btnPlay*, go to the Advanced view (second button on
 
 Now save, and publish to Xcode.
 
-Your Xcode project is contained inside the *proj.ios_mac* sub-directory in the directory where your Cocos Studio project lives. If you don't remember where you saved it, search for your project name in Spotlight (magnifying glass at the top right of your Mac's screen).
+Copy Resources
+=======================
+
+We have to do one more thing before we start coding. The way Cocos Studio works, it only publishes resources that are actually used in Cocos Studio. However, there are images that we want to use in code that we haven't used in Cocos Studio, namely *bubble.png* that we will use to make Creatures.
+
+To make sure we can access all the resources in Xcode, we'll copy the Assets directory from where Cocos Studio reads them into the publish directory.
+
+Navigate to your project directory and open *cocosstudio*. Copy the *Assets* directory.
+
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/assetsFolderCocosStudio.png)
+
+Then open *Resources* and *res*. Paste the Assets directory here. Choose yes if it asks you whether you'd like to overwrite Assets.
+
+![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/assetsFolderResources.png)
+
+Now all the assets from the art pack will be accessible in your Xcode project.
