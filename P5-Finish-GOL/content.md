@@ -442,6 +442,24 @@ In *HelloWorldScene.cpp* we will:
 -   implement a `play` method that starts the timer
 -   implement a `pause` method that stops the timer
 
+But first, go to *HelloWorldScene.h*, and add the following after the `public:` method declarations:
+
+	private:
+	    Grid* grid;
+	    cocos2d::ui::Text* populationCount;
+	    cocos2d::ui::Text* generationCount;
+	    
+	    void play(Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
+	    void pause(Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
+	    void step(float dt);
+
+Here we delare three instance variables, `grid`, `populationCount` and `generationCount`. We also declare three methods, `play`, `pause` and `step`. So that the compiler can see will be happy, add these to the `#include` at the top:
+
+	#include "ui/CocosGUI.h"
+	#include "Grid.h"
+	    
+Now, go to *HelloWorldScene.cpp*
+
 Directly below this line:
 
 	auto rootNode = CSLoader::createNode("MainScene.csb");
@@ -464,8 +482,8 @@ Add the following:
     cocos2d::ui::Button* playButton = leftPanel->getChildByName<cocos2d::ui::Button*>("btnPlay");
     cocos2d::ui::Button* pauseButton = leftPanel->getChildByName<cocos2d::ui::Button*>("btnPause");
     
-    playButton->addTouchEventListener(CC_CALLBACK_2(HelloWorldScene::play, this));
-    pauseButton->addTouchEventListener(CC_CALLBACK_2(HelloWorldScene::pause, this));
+    playButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::play, this));
+    pauseButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::pause, this));
 
 Most of this code is just grabbing references to the various objects we created in Cocos Studio. We store a reference to the grid in the `grid` instance variable. We assign the `generationCount` and `populationCount` labels to their respective instance variables.
 
@@ -473,19 +491,19 @@ Then we grab references to the `playButton` and `pauseButton` and tell them that
 
 Let's implement those methods:
 
-	void HelloWorldScene::play(Ref* pSender, ui::Widget::TouchEventType type)
+	void HelloWorld::play(Ref* pSender, ui::Widget::TouchEventType type)
 	{
-	    this->schedule(CC_SCHEDULE_SELECTOR(HelloWorldScene::step), 0.5f);
+	    this->schedule(CC_SCHEDULE_SELECTOR(HelloWorld::step), 0.5f);
 	}
 
-	void HelloWorldScene::pause(Ref* pSender, ui::Widget::TouchEventType type)
+	void HelloWorld::pause(Ref* pSender, ui::Widget::TouchEventType type)
 	{
-	    this->unschedule(CC_SCHEDULE_SELECTOR(HelloWorldScene::step));
+	    this->unschedule(CC_SCHEDULE_SELECTOR(HelloWorld::step));
 	}
 
 These use the Cocos2d-x scheduler to `schedule` and `unschedule` the `step` method, telling it to call it every half second. So lets code `step`:
 
-	void HelloWorldScene::step(float dt)
+	void HelloWorld::step(float dt)
 	{
 	    grid->evolveStep();
 	    
@@ -493,7 +511,7 @@ These use the Cocos2d-x scheduler to `schedule` and `unschedule` the `step` meth
 	    populationCount->setString(std::to_string(grid->getPopulationCount()));
 	}
 
-That's it for `HelloWorldScene` so let's finish up the project by coding the last remaining methods in *Grid.cpp*.
+That's it for `HelloWorld` so let's finish up the project by coding the last remaining methods in *Grid.cpp*.
 
 Grid Accessors
 ======================
