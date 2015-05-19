@@ -121,22 +121,12 @@ When you're done it should look like this:
 
 ![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/labels.png)
 
-Great! Now it's time to set up code connections before we switch to Xcode and you start implementing the actual game. We want to tell Cocos Studio how this UI you've created will interact with the classes and methods we will implement in code.
-
-Set Up Code Connections
-=======================
-
-Now we have to tell Cocos Studio which methods to call when our
-buttons are touched. Select *btnPlay*, go to the Advanced view (second button on the top of the right panel). Under callback method, select *Touch* in the dropdown, and type *play* in the text box on the right.
-
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/playCallback.png)
-
-**Repeat this step and set the selector *pause* for the pause button.**
-
-Now save, and publish to Xcode.
+Great!
 
 Copy Resources
 =======================
+
+Now save, and publish to Xcode.
 
 We have to do one more thing before we start coding. The way Cocos Studio works, it only publishes resources that are actually used in Cocos Studio. However, there are images that we want to use in code that we haven't used in Cocos Studio, namely *bubble.png* that we will use to make Creatures.
 
