@@ -25,7 +25,7 @@ The interface is divided into five main sections:
 Publishing to Xcode
 ===================
 
-Every time you make a change to your Cocos Studio project, you must *publish* it so that your changes are reflected in the Xcode project.  The first time you publish, you should click *Publish and Package...* and select the *Publish to Xcode* radio button. Every subsequent time you publish, you can click *Publish Using Last Setting* in the dropdown.  Remember to publish every time you make a change!
+Every time you make a change to your Cocos Studio project, you must *publish* it so that your changes are reflected in the Xcode project.  The first time you publish, you should click *Publish and Package...* and select the *Publish to Xcode* radio button. Every subsequent time you publish, you can click *Publish Using Last Setting* in the dropdown, or just click the Xcode icon.  Remember to publish every time you make a change!
 
 ![image](publishButton.png)
 
