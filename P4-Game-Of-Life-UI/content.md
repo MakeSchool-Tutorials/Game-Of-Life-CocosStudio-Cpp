@@ -48,7 +48,7 @@ Create Layout Panels
 
 To help ensure that our UI resizes dynamically for various screen resolutions, we're going to use two *Panels* which are a type of *Container Node*.  We will have a left panel for the play button, pause button, labels and microscope, and a right panel that will hold the grid.  
 
-Drag a Panel container from the Objects Browser in the left panel. Set the anchor point to (0, 0.5), the position to *%Relative percentage of parent container* and the postion to (0, 50).  This will pin the panel to the middle left of the screen.  Set the size to *%Relative percentage of parent container* and (20, 100). Finally, change the name to *leftPanel*. In the code we'll refer to the objects created in Cocos Studio by their names, so it's important that we give them good ones.
+Drag a Panel container from the Objects Browser in the left panel (you may have to scroll down to find it). Set the anchor point to (0, 0.5), the position to *%Relative percentage of parent container* and the postion to (0, 50).  This will pin the panel to the middle left of the screen.  Set the size to *%Relative percentage of parent container* and (20, 100). Finally, change the name to *leftPanel*. In the code we'll refer to the objects created in Cocos Studio by their names, so it's important that we give them good ones.
 
 ![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/leftPanelSettings.png)
 
