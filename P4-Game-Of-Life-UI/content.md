@@ -108,6 +108,42 @@ When you are done it should look like this:
 
 In the next step add four labels as children of the balloon, these will form our scoreboard. To do so, go back to the Objects Browser, find the Widget called *Label* (not *BitmapLabel*), and drag one of them onto the scene. Scroll down to the bottom of the label's properties and click the *Font file* button. Select Courier New Bold.ttf from the Fonts directory. Set the size to 20, and the color to #0D9F00. Copy and paste that label 3 times, then fill out the labels according to the following table.
 
+<!-- Unfortunately, no markdown table support yet -->
+
+<table>
+	<thead>
+		<tr>
+			<th align="center">Label Name</th>
+			<th align="center">Label Text</th>
+			<th align="center">Position</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>populationLabel</td>
+			<td>Population</td>
+			<td>(52%, 75%)</td>
+		</tr>
+		<tr>
+			<td>populationCount</td>
+			<td>0</td>
+			<td>(52%, 59%)</td>
+		</tr>
+		<tr>
+			<td>generationLabel</td>
+			<td>Generation</td>
+			<td>(52%, 40%)</td>
+		</tr>
+		<tr>
+			<td>generationCount</td>
+			<td>0</td>
+			<td>(52%, 23%)</td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- 
+
 | Label Name      | Label Text | Position   |
 |-----------------|------------|------------|
 | populationLabel | Population | (52%, 75%) |
