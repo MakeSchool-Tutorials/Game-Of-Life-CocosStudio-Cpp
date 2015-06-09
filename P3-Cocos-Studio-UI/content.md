@@ -7,7 +7,7 @@ Let's take a quick tour of Cocos Studio's user interface before we delve into cr
 
 The interface is divided into five main sections:
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/cocosStudioUI.png)
+![image](cocosStudioUI.png)
 
 1.  *Objects Browser* - This is where you
     can select different types of objects and drag them into your scene.
@@ -27,7 +27,7 @@ Publishing to Xcode
 
 Every time you make a change to your Cocos Studio project, you must *publish* it so that your changes are reflected in the Xcode project.  The first time you publish, you should click *Publish and Package...* and select the *Publish to Xcode* radio button. Every subsequent time you publish, you can click *Publish Using Last Setting* in the dropdown.  Remember to publish every time you make a change!
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/publishButton.png)
+![image](publishButton.png)
 
 **Now you're ready to add content to your very first Cocos Studio
 game!**

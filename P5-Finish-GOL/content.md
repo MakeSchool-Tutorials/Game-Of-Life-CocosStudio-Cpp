@@ -34,15 +34,15 @@ Create a Creature class
 We're going to implement this game in an object-oriented manner - therefore
 Creatures (the things spawning and dying in the grid) will get their own class. Create a new C++ class in Xcode called Creature. Go to File --> New --> File then choose C++ File. 
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/createNewFile.png)
+![image](createNewFile.png)
 
 Create a class called *Creature*.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/createCreature.png)
+![image](createCreature.png)
 
 Check the target for GameOfLife Mac, and make sure you save it in the Classes directory of your project.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/creatureSaveLocation.png)
+![image](creatureSaveLocation.png)
 
 When you've created the class, open the Creature header file (*Creature.h*). The first thing you'll notice is that Xcode automatically generated an [#include guard](http://en.wikipedia.org/wiki/Include_guard) for you. It should look something like this:
 
@@ -346,7 +346,7 @@ Time to test the code! In your `onEnter()`, comment out `this->setupTouchHandlin
 
 This will make the creatures visible. Run the game! You should see something like this:
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/gridTest.png)
+![image](gridTest.png)
 
 **Undo the changes you made in this section before moving on.**
 	

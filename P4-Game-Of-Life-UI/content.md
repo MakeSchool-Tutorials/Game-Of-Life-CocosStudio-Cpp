@@ -5,23 +5,21 @@ slug: game-of-life-ui
 
 Now it's time to create the interface for the game in Cocos Studio. Once you are done with this chapter the UI of the game will look like this:
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/finalUI.png)
+![image](finalUI.png)
 
 Getting Started
 ===============
 
-Get started by downloading our [art
-pack](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/Assets.zip)
-for this game.
+Get started by downloading our [art pack](Assets.zip) for this game.
 
 After you have unzipped it, drag the *Assets* folder into your
 Cocos Studio project onto the Resources Browser in left panel. Alternatively you can right click in the Resources Browser and *Import Resources...*.
 	
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/rightClickImport.png)
+![image](rightClickImport.png)
 
 After importing the assets, your Resources Browser should look like this
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/assetsExpanded.png)
+![image](assetsExpanded.png)
 
 Now open *MainScene.csd* and highlight Default in the timeline.
 Hit the delete key - you should end up with a black screen. You just deleted the default background image, but note that you cannot delete the root Scene. 
@@ -41,7 +39,7 @@ Now set the background position to be expressed in *%Relative percentage of pare
 
 Finally, set the background *scale* to 120% horizontal and 120% vertical. This will ensure that the background is large enough to cover the screen on all iPhones.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/positionRelative.png)
+![image](positionRelative.png)
 
 Create Layout Panels
 ====================
@@ -50,30 +48,30 @@ To help ensure that our UI resizes dynamically for various screen resolutions, w
 
 Drag a Panel container from the Objects Browser in the left panel (you may have to scroll down to find it). Set the anchor point to (0, 0.5), the position to *%Relative percentage of parent container* and the postion to (0, 50).  This will pin the panel to the middle left of the screen.  Set the size to *%Relative percentage of parent container* and (20, 100). Finally, change the name to *leftPanel*. In the code we'll refer to the objects created in Cocos Studio by their names, so it's important that we give them good ones.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/leftPanelSettings.png)
+![image](leftPanelSettings.png)
 
 Now we'll create the right panel. Drag another Panel container into the scene from the Objects Browser. Set the anchor point to (0, 0.5). Set the position to *%Relative percentage of parent container* and (20, 50). Set the size to *%Relative percentage of parent container* and (80, 100). Change the name to *rightPanel*.
 
 So now your timeline should look like this:
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/panelsSetup.png)
+![image](panelsSetup.png)
 
 Creating a Grid
 ===============
 
 We will create the grid in a separate .csd file because it will be linked to a custom class later on. Create a new .csd file *File --> New File* of type *Node* and call it *Grid*.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/newGrid.png)
+![image](newGrid.png)
 
 Find Grid.png in the Resource Browser and drag it into the your newly created Node. Set the position to (0, 0) to center it.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/gridImage.png)
+![image](gridImage.png)
 
 Change the name of the newly-dragged grid sprite to *grid*.
 
 The way it is now, *Grid.csd* is just a normal `Node`, but we want to be able to write custom code for it. To do that, we need to assign it a class. To do that, first click the root `Node` (the highest object in the timeline). Then, on the properties panel, switch to the advanced tab. In the custom class field, type *Grid*. Later, we'll make the `Grid` class in code.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/gridCustomClass.png)
+![image](gridCustomClass.png)
 
 **Make sure to save your newly created file (cmd + s) or your grid will not display correctly later on!**
 
@@ -85,7 +83,7 @@ Now open *MainScene.csd* again by double clicking on it.
 Drag *Grid.csd* onto the stage. This will add the grid to the
 MainScene. Rename it to gridNode. In the timeline, drag gridNode to become a child of rightPanel. 
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/gridNodeChild.png)
+![image](gridNodeChild.png)
 
 Set the position of gridNode to (50%, 50%).
 
@@ -98,7 +96,7 @@ Drag two buttons (you can find them in the Widgets section of the Objects Browse
 
 Double click the *Normal State* property for btnPlay. Navigate to and select play.png. 
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/btnPlayNavigation.png)
+![image](btnPlayNavigation.png)
 
 For *Press State* select play-pressed.png. Do the same for btnPause with pause.png and pause-pressed.png.
 
@@ -106,7 +104,7 @@ Now go to your resources and add *balloon.png* and *microscope.png* to leftPanel
 
 When you are done it should look like this:
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/gameUIPreLabels.png)
+![image](gameUIPreLabels.png)
 
 In the next step add four labels as children of the balloon, these will form our scoreboard. To do so, go back to the Objects Browser, find the Widget called *Label* (not *BitmapLabel*), and drag one of them onto the scene. Scroll down to the bottom of the label's properties and click the *Font file* button. Select Courier New Bold.ttf from the Fonts directory. Set the size to 20, and the color to #0D9F00. Copy and paste that label 3 times, then fill out the labels according to the following table.
 
@@ -119,7 +117,7 @@ In the next step add four labels as children of the balloon, these will form our
 
 When you're done it should look like this:
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/labels.png)
+![image](labels.png)
 
 Great!
 
@@ -134,10 +132,10 @@ To make sure we can access all the resources in Xcode, we'll copy the Assets dir
 
 Navigate to your project directory and open *cocosstudio*. Copy the *Assets* directory.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/assetsFolderCocosStudio.png)
+![image](assetsFolderCocosStudio.png)
 
 Then open *Resources* and *res*. Paste the Assets directory here. Choose yes if it asks you whether you'd like to overwrite Assets.
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/assetsFolderResources.png)
+![image](assetsFolderResources.png)
 
 Now all the assets from the art pack will be accessible in your Xcode project.

@@ -9,16 +9,16 @@ Installation
 We are going to use a tool called Cocos Studio to make this game. When
 we are done, the game will look like this:
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+SpriteBuilder+Tutorial/GOF-GridComplete.png)
+![image](GOF-GridComplete.png)
 
 Go to [the Cocos2d-x downloads page](http://www.cocos2d-x.org/download)
 and download the latest version of Cocos. It's free! Make sure you download Cocos, and not Cocos2d-x (which is the game engine source code), or Code IDE (which is a development environment for using Cocos2d-x with Javascript or Lua)  
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/medium_cocos-logo.png)
+![image](medium_cocos-logo.png)
 
 Run the installer. 
 
-![image](https://s3.amazonaws.com/mgwu-misc/GameOfLife+Cocos+Studio+Tutorial/installCocos2.png)
+![image](installCocos2.png)
 
 It should place a folder called Cocos in your Applications folder.  Open that folder and run Cocos.app.
 
