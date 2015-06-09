@@ -94,7 +94,7 @@ Great! Now it is time to set up your game's UI! We're going to add the play and 
 
 Drag two buttons (you can find them in the Widgets section of the Objects Browser) into the scene. Name one *btnPlay* and the other *btnPause*. Make sure they both have an anchor point of (0.5, 0.5).  Set the size of both to (140px, 76px). Position btnPlay at (50%, 88%) and btnPause at (50%, 75%). Delete the default "Button" text for both.
 
-Double click the *Normal State* property for btnPlay. Navigate to and select play.png. 
+Double click the *Normal State* property for btnPlay. Navigate to and select play.png. Alternatively, you can drag and drop the images from the resources panel over to *Normal State* property on the properties panel.
 
 ![image](btnPlayNavigation.png)
 
@@ -150,6 +150,8 @@ In the next step add four labels as children of the balloon, these will form our
 | populationCount | 0          | (52%, 59%) |
 | generationLabel | Generation | (52%, 40%) |
 | generationCount | 0          | (52%, 23%) |
+
+-->
 
 When you're done it should look like this:
 
