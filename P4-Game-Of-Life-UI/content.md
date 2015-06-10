@@ -39,7 +39,7 @@ The *anchor point* is the point inside that the node that will be moved to whate
 
 First, ensure that the anchor point is set to (0.5, 0.5). The anchor point is a coordinate inside the object - it's expressed in percentages from 0 to 1.  In this case, (0.5, 0.5) means (50%, 50%) which will place the anchor point in the middle of the background. 
 
-Now set the background position to be expressed in *%Relative percentage of parent container* by clicking the dropdown that says *Px*. Then set the values to (50, 50). This will set the background's position to (50, 50) of the parent node. By expressing the position of the background in percentages instead of absolute coordinates we make our layout more flexible. That's because, even if the parent node's size changes, the background will remain the middle.
+Now set the background position to be expressed in *%Relative percentage of parent container* by clicking the dropdown that says *Px*. Then set the values to (50, 50). This will set the background's position to (50, 50) of the parent node. By expressing the position of the background in percentages instead of absolute coordinates we make our layout more flexible. That's because, even if the parent node's size changes, the background will remain in the middle.
 
 Finally, set the background *scale* to 120% horizontal and 120% vertical. This will ensure that the background is large enough to cover the screen on all iPhones.
 
@@ -153,7 +153,7 @@ In the next step add four labels as children of the balloon, these will form our
 
 -->
 
-When you're done it should look like this:
+Your labels should look like this:
 
 ![image](labels.png)
 

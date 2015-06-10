@@ -105,7 +105,7 @@ Place this code below `public:`:
 
 This is some boiler-plate code that you will place in all of your custom classes that inherit from a Cocos2d-x node or node subclass. `CREATE_FUNC()` is a macro that will both declare and implement a `create()` method for your class. In this case, that means we can now create a new `Creature` by calling `Creature::create()`.
 	
-`init()` is a method that is automatically called by `create()`. `init()` is where you will place your initialization code for the class. Because we're overriding `init()` from a super-class (`cocos2d::Sprite`), we use the `override` keyword to notify the compiler and any humans reading the code. `override` is optional, but is a good practice.
+`init()` is a method that is automatically called by `create()`. `init()` is where you will place your initialization code for the class. Because we're overriding `init()` from a super-class (`cocos2d::Sprite`), we use the `override` keyword to notify the compiler and any humans reading the code.
 
 Now, below where you declared `init()` we'll declare the public methods that other classes will use to interface with the `Creature` class. They look like this:
 
