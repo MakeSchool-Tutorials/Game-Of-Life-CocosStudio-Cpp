@@ -23,11 +23,27 @@ Change this line:
 	
 to look like this:
 
-	director->getOpenGLView()->setDesignResolutionSize(960, 640, ResolutionPolicy::FIXED_HEIGHT);
+	glview->setDesignResolutionSize(960, 640, ResolutionPolicy::FIXED_HEIGHT);
 	
-This will make sure that the game won't be letterboxed (black bars appearing on the sides) for the various iPhone resolutions.
+This will make sure that the game won't be letterboxed (black bars appearing on the sides) for the various iPhone resolutions. Notice that the design resolution here is the same as what we have set in Cocos Studio!
 
 Press the play button to see the UI of your game in the iOS simulator!
+
+Modify HelloWorldScene.cpp
+==========================
+
+Because of a bug in Cocos2d-x (specifically the code that reads our Cocos Studio files), we have to add a bit of code to ensure that the positions of our objects that we created in Cocos Studio are correctly repositioned for various resolutions.
+
+In *HelloWorldScene.cpp*, right below this line: `auto rootNode = CSLoader::createNode("MainScene.csb");`
+
+Add the following:
+
+    Size size = Director::getInstance()->getVisibleSize();
+    rootNode->setContentSize(size);
+    ui::Helper::doLayout(rootNode);
+    
+In general, these lines will have to be added after loading any new scene from a *.csb* file until the bug is fixed!
+
 
 Create a Creature class
 =======================

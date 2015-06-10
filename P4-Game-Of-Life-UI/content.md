@@ -54,7 +54,7 @@ Drag a Panel container from the Objects Browser in the left panel (you may have 
 
 ![image](leftPanelSettings.png)
 
-Now we'll create the right panel. Drag another Panel container into the scene from the Objects Browser. Set the anchor point to (0, 0.5). Set the position to *%Relative percentage of parent container* and (20, 50). Set the size to *%Relative percentage of parent container* and (80, 100). Change the name to *rightPanel*.
+Now we'll create the right panel. Drag another Panel container into the scene from the Objects Browser. Set the anchor point to (0.5, 0.5). Set the position to *%Relative percentage of parent container* and (60, 50). Set the size to *%Relative percentage of parent container* and (80, 100). Change the name to *rightPanel*.
 
 So now your timeline should look like this:
 
