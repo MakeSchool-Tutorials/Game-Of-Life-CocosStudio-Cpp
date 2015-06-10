@@ -8,6 +8,7 @@ in Cocos Studio with the game logic we're going to code in Xcode.
 
 Open your Xcode project if it isn't already. Your Xcode project is contained inside the *proj.ios_mac* sub-directory in the directory where your Cocos Studio project lives. If you don't remember where you saved it, search for your project name *GameOfLife.xcodeproj* in Spotlight (magnifying glass at the top right of your Mac's screen).
 
+Try running the game to see the what you've made so far!
 
 Modify AppDelegate.cpp
 ======================
@@ -152,10 +153,26 @@ This calls the superclass method `setVisible` which does just like what it sound
 
 Now we're done implementing `Creature`!
 
+Set the Grid Custom Class
+=========================
+
+Flip back to your Cocos Studio project, and open *Grid.csd*.
+
+The way it is now, *Grid.csd* is just a normal `Node`, but we want to be able to write custom code for it. To do that, we need to assign it a class. 
+
+To do that, first click the root `Node` (the topmost object in the timeline). Then, on the properties panel, switch to the advanced tab. In the custom class field, type *Grid*.
+
+![image](gridCustomClass.png)
+
+Now we can create a `Grid` class to create custom behaviors for our *Grid.csd* object.
+
+**Make sure to save and publish your Cocos Studio project!**
+
+
 Create a Grid Class
 ===================
 
-Now let's create the *Grid* class. Create a new C++ class in Xcode following the same steps you used to create the Creature class, but name it `Grid`.
+Now let's create the `Grid` class. Create a new C++ class in Xcode following the same steps you used to create the Creature class, but name it `Grid`.
 
 Replace the code in *Grid.h* (inside the include guards) with the following:
 
