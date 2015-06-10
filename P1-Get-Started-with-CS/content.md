@@ -11,16 +11,21 @@ we are done, the game will look like this:
 
 ![image](GOF-GridComplete.png)
 
+> [action]
 Go to [the Cocos2d-x downloads page](http://www.cocos2d-x.org/download)
 and download the latest version of Cocos. It's free! Make sure you download Cocos, and not Cocos2d-x (which is the game engine source code), or Code IDE (which is a development environment for using Cocos2d-x with Javascript or Lua)  
 
 ![image](medium_cocos-logo.png)
 
+> [action]
 Run the installer. 
 
 ![image](installCocos2.png)
 
-It should place a folder called Cocos in your Applications folder.  Open that folder and run Cocos.app.
+It should place a folder called Cocos in your Applications folder. 
+
+> [action]
+Open that folder and run Cocos.app.
 
 Cocos Studio Basics
 ====================

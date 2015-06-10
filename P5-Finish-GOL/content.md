@@ -6,9 +6,10 @@ slug: game-of-life-code
 Time to code! In this step we are going to hook up the UI we've created
 in Cocos Studio with the game logic we're going to code in Xcode.
 
-Open your Xcode project if it isn't already. Your Xcode project is contained inside the *proj.ios_mac* sub-directory in the directory where your Cocos Studio project lives. If you don't remember where you saved it, search for your project name *GameOfLife.xcodeproj* in Spotlight (magnifying glass at the top right of your Mac's screen).
+> [action]
+Open your Xcode project if it isn't already. 
 
-Try running the game to see the what you've made so far!
+Your Xcode project is contained inside the *proj.ios_mac* sub-directory in the directory where your Cocos Studio project lives. If you don't remember where you saved it, search for your project name *GameOfLife.xcodeproj* in Spotlight (magnifying glass at the top right of your Mac's screen).
 
 Modify AppDelegate.cpp
 ======================
@@ -17,46 +18,51 @@ First we will modify our AppDelegate class.  The AppDelegate is the class that h
 
 We're going to modify `bool AppDelegate::applicationDidFinishLaunching()`. This method is called the first time your game is loaded, and is where most of our game-specific Cocos2d-x setup occurs. 
 
+> [action]
 Change this line:
-
+>
 	director->getOpenGLView()->setDesignResolutionSize(960, 640, ResolutionPolicy::SHOW_ALL);
-	
+>	
 to look like this:
-
+>
 	glview->setDesignResolutionSize(960, 640, ResolutionPolicy::FIXED_HEIGHT);
 	
 This will make sure that the game won't be letterboxed (black bars appearing on the sides) for the various iPhone resolutions. Notice that the design resolution here is the same as what we have set in Cocos Studio!
-
-Press the play button to see the UI of your game in the iOS simulator!
 
 Modify HelloWorldScene.cpp
 ==========================
 
 Because of a bug in Cocos2d-x (specifically the code that reads our Cocos Studio files), we have to add a bit of code to ensure that the positions of our objects that we created in Cocos Studio are correctly repositioned for various resolutions.
 
+> [action]
 In *HelloWorldScene.cpp*, right below this line: `auto rootNode = CSLoader::createNode("MainScene.csb");`
-
+>
 Add the following:
-
+>
     Size size = Director::getInstance()->getVisibleSize();
     rootNode->setContentSize(size);
     ui::Helper::doLayout(rootNode);
     
 In general, these lines will have to be added after loading any new scene from a *.csb* file until the bug is fixed!
 
+Press the play button to see the UI of your game in the iOS simulator!
 
 Create a Creature class
 =======================
 
-We're going to implement this game in an object-oriented manner - therefore
-Creatures (the things spawning and dying in the grid) will get their own class. Create a new C++ class in Xcode called Creature. Go to File --> New --> File then choose C++ File. 
+We're going to implement this game in an object-oriented manner - so Creatures (the things spawning and dying in the grid) will get their own class. 
+
+> [action]
+Create a new C++ class in Xcode called Creature. Go to File --> New --> File then choose C++ File. 
 
 ![image](createNewFile.png)
 
+> [action]
 Create a class called *Creature*.
 
 ![image](createCreature.png)
 
+> [action]
 Check the target for GameOfLife Mac, and make sure you save it in the Classes directory of your project.
 
 ![image](creatureSaveLocation.png)
@@ -72,16 +78,17 @@ When you've created the class, open the Creature header file (*Creature.h*). The
 
 *The code you write in any header file should always be inside the include guards.* 
 
+> [action]
 First, delete `#include <stdio.h>`, we don't need it. Then paste the following code between the include guards. 
-    
+>  
 	#include "cocos2d.h"
-
+>
 	class Creature : public cocos2d::Sprite
 	{
 	public:
-	    
+>	    
 	protected:
-	
+>	
 	};
 
 
@@ -97,10 +104,11 @@ This is a C++ class declaration. We're declaring a class called `Creature` that 
 
 After `public:` and `protected:` is space for us to declare both public and protected methods and instance variables for the `Creature` class.
 
+> [action]
 Place this code below `public:`:
-
+>
     CREATE_FUNC(Creature);
-    
+>   
     bool init() override;
 
 This is some boiler-plate code that you will place in all of your custom classes that inherit from a Cocos2d-x node or node subclass. `CREATE_FUNC()` is a macro that will both declare and implement a `create()` method for your class. In this case, that means we can now create a new `Creature` by calling `Creature::create()`.
@@ -109,51 +117,59 @@ This is some boiler-plate code that you will place in all of your custom classes
 
 Now, below where you declared `init()` we'll declare the public methods that other classes will use to interface with the `Creature` class. They look like this:
 
-    void setLivingNeighborsCount(int livingNeighborsCount);
-    int getLivingNeighborsCount();
-    
-    void setIsAlive(bool isAlive);
-    bool getIsAlive();
+> [action]
+> 
+	void setLivingNeighborsCount(int livingNeighborsCount);
+	int getLivingNeighborsCount();
+>
+	void setIsAlive(bool isAlive);
+	bool getIsAlive();
    
     
 In this case, we're declaring two getter and setter methods, for two properties of the `Creature` class. The first property is `isAlive` which is a boolean value indiciating if the creature is alive or not. The second is `livingNeighborsCount`, an integer indicating how many neighboring cells are occupied by a living creature.
 
+> [action]
 Now let's declare the instance variables for those two properties, below the `protected` keyword:
-
+>
 	protected:
 		int livingNeighborsCount;
 		bool isAlive;	
 
 They're `protected` because we don't want outside classes to be able to modify their values directly - they'll have to use the publically declared getter and setter methods to do that.
 
+> [action]
 Now let's implement the code for our `Creature` class. Switch to *Creature.cpp*. Right below `#include "Creature.h"` add the following line:
-
+>
 	using namespace cocos2d;
 	
-This will allow us to use Cocos2d-x classes, like `Sprite`, without having to prepend them with `cocos2d::`. Below that, add this `init` method:
+This will allow us to use Cocos2d-x classes, like `Sprite`, without having to prepend them with `cocos2d::`. 
 
+> [action]
+Below that, add this `init` method:
+>
 	bool Creature::init()
 	{
 	    if (! Sprite::initWithFile("Assets/SpriteImages/bubble.png"))
 	    {
 	        return false;
 	    }
-
+>
 	    this->setLivingNeighborsCount(0);
 	    this->setIsAlive(false);
-	    
+>	    
 	    return true;
 	}
 
 This initializer sets the image of the creature to *bubble.png*. It does that by calling the superclass' initializer, `Sprite::initWithFile()`. We're also careful to initialize the values of our properties by calling their setters. We set `livingNeighborsCount` to *0* and `isAlive` to *false*. We return *true* at the end to indicate that initialization was successful. 
 
+> [action]
 Next let's create our getter and setter methods for the `livingNeighborsCount` property:
-
+>
 	void Creature::setLivingNeighborsCount(int livingNeighborsCount)
 	{
 	    this->livingNeighborsCount = livingNeighborsCount;
 	}
-
+>
 	int Creature::getLivingNeighborsCount()
 	{
 	    return this->livingNeighborsCount;
@@ -161,8 +177,11 @@ Next let's create our getter and setter methods for the `livingNeighborsCount` p
 	
 This is the standard way to implement getters and setters in C++, so read it carefully. In `setLivingNeighborsCount` we use `this` to refer to the instance variable that's part of the class `Creature`. That is to distinguish it from the parameter that has the same name: `livingNeighborsCount`. The getter is easy, it simply returns the value of `this->livingNeighborsCount`.
 
-Now implement `setIsAlive` and `getIsAlive` the same way, taking care to remember that `isAlive` is a `bool`, and not an `int`. Once you've done that, add the following line to your `setIsAlive`:
-
+> [action]
+Now implement `setIsAlive` and `getIsAlive` the same way, taking care to remember that `isAlive` is a `bool`, and not an `int`. 
+>
+Once you've done that, add the following line to your `setIsAlive`:
+>
 	this->setVisible(isAlive);
 	
 This calls the superclass method `setVisible` which does just like what it sounds like - makes the `Creature` visible or invisible depending on the value of `isAlive`. That way, when the creature is alive, it will be visible, and when it is dead it will be invisible.
@@ -171,11 +190,12 @@ Now we're done implementing `Creature`!
 
 Set the Grid Custom Class
 =========================
-
+> [action]
 Flip back to your Cocos Studio project, and open *Grid.csd*.
 
 The way it is now, *Grid.csd* is just a normal `Node`, but we want to be able to write custom code for it. To do that, we need to assign it a class. 
 
+> [action]
 To do that, first click the root `Node` (the topmost object in the timeline). Then, on the properties panel, switch to the advanced tab. In the custom class field, type *Grid*.
 
 ![image](gridCustomClass.png)
@@ -188,35 +208,36 @@ Now we can create a `Grid` class to create custom behaviors for our *Grid.csd* o
 Create a Grid Class
 ===================
 
+> [action]
 Now let's create the `Grid` class. Create a new C++ class in Xcode following the same steps you used to create the Creature class, but name it `Grid`.
-
+>
 Replace the code in *Grid.h* (inside the include guards) with the following:
-
+>
 	#include "cocos2d.h"
 	#include "Creature.h"
-
+>
 	class Grid : public cocos2d::Node
 	{
 	public:
 	    CREATE_FUNC(Grid);
-	    
+>	    
 	    bool init() override;
-	    
+>	    
 	    void onEnter() override;
-	    
+>	    
 	    void evolveStep();
-	    
+>	    
 	    int getGenerationCount();
-	    
+>	    
 	    int getPopulationCount();
-	    
+>	    
 	protected:
 	    int generationCount;
 	    int populationCount;
 	    float cellWidth;
 	    float cellHeight;
 	    cocos2d::Vector<Creature*> gridArray;
-	    
+>	    
 	    void setupGrid();
 	    void setupTouchHandling();
 	    void updateNeighborCount();
@@ -234,65 +255,72 @@ Notice that the 5 declarations directly below `protected` are variables, and tha
 
 Setup the Grid
 ===================
-
+> [action]
 Switch over to *Grid.cpp* so that we can begin to implement the grid. Directly under `#include "Grid.h"` type the following:
-
+>
 	using namespace cocos2d;
-
+>
 	const int ROWS = 8;
 	const int COLUMNS = 10;
 
 We declare ROWS and COLUMNS to be `const`, as in *constant* because our grid is static, and we don't want the value of either to change. It's common to declare constant variables on all-caps.
 
+> [action]
 Below that type the `init()` method:
-
+>
 	bool Grid::init()
 	{
 	    if (! Node::init())
 	    {
 	        return false;
 	    }
-	    
+>	    
 	    generationCount = 0;
 	    populationCount = 0;
-	    
+>	    
 	    return true;
 	}
 	
 Here we're initializing our class by calling the superclass initializer `Node::init()`, after which we initialize `generationCount` and `populationCount` to 0.
 
-One important thing to note is that before the `Grid` is fully initialized, certain properties on it cannot yet be accessed - for example the `contentSize` of the grid `Sprite` - because it's not yet loaded. But some of our instance variables, `cellWidth` and `cellHeight` depend on the width and height of the grid! The best way to deal with that is to initialize those variables in `onEnter()`, which is called after the `Node` is fully initialized, and is about to enter the stage. Type the following below `init()`.
+One important thing to note is that before the `Grid` is fully initialized, certain properties on it cannot yet be accessed - for example the `contentSize` of the grid `Sprite` - because it's not yet loaded. But some of our instance variables, `cellWidth` and `cellHeight` depend on the width and height of the grid! The best way to deal with that is to initialize those variables in `onEnter()`, which is called after the `Node` is fully initialized, and is about to enter the stage. 
 
+> [action]
+Type the following below `init()`.
+>
 	void Grid::onEnter()
 	{
 	    Node::onEnter();
-	    
+>	    
 	    this->setupGrid();
-	    
+>	    
 	    this->setupTouchHandling();
 	}
 	
-This is pretty simple - first, because we're overriding the superclass' `onEnter()` (remember the `override` in *Grid.h*?), it's very important that we remember to call the superclass' `onEnter()`, so we do that with `Node::onEnter()`. The next two lines are calling some additional setup methods that we shall implement now. Below `onEnter()`, type the following:
+This is pretty simple - first, because we're overriding the superclass' `onEnter()` (remember the `override` in *Grid.h*?), it's very important that we remember to call the superclass' `onEnter()`, so we do that with `Node::onEnter()`. The next two lines are calling some additional setup methods that we shall implement now. 
 
+> [action]
+Below `onEnter()`, type the following:
+>
 	void Grid::setupGrid()
 	{
 	    Sprite* gridSprite = this->getChildByName<Sprite*>("grid");
 	    cellWidth = gridSprite->getContentSize().width / float(COLUMNS);
 	    cellHeight = gridSprite->getContentSize().height / float(ROWS);
-	    
+>	    
 	    gridArray.reserve(ROWS * COLUMNS);
-	    
+>	    
 	    for (int row = 0; row < ROWS; ++row)
 	    {
 	        for (int col = 0; col < COLUMNS; ++col)
 	        {
 	            Creature* creature = Creature::create();
-	            
+>	            
 	            creature->setAnchorPoint(Vec2(0.0f, 0.0f));
 	            creature->setPosition(cellWidth *  float(col), cellHeight * float(row));
-	            
+>	            
 	            gridSprite->addChild(creature);
-	            
+>	            
 	            gridArray.pushBack(creature);
 	        }
 	    }
@@ -309,13 +337,15 @@ Next, we create a nested for loop the interior of which will be run 80 times (8 
 Add the GridReader
 ===================
 
-You should recall that when we created *Grid.csd* in Cocos Studio, we assigned it the custom class *Grid*. Cocos2d-x requires that every custom class have an associated *Reader* class which is used to link up the Cocos Studio object with its associated code. Create a new C++ file and call it *GridReader*.
-
+You should recall that when we created *Grid.csd* in Cocos Studio, we assigned it the custom class *Grid*. Cocos2d-x requires that every custom class have an associated *Reader* class which is used to link up the Cocos Studio object with its associated code. 
+> [action]
+Create a new C++ file and call it *GridReader*.
+>
 In *GridReader.h*, (between the header guards) paste the following
-
+>
 	#include "cocos2d.h"
 	#include "cocostudio/WidgetReader/NodeReader/NodeReader.h"
-
+>
 	class GridReader : public cocostudio::NodeReader
 	{
 	public:    
@@ -323,16 +353,16 @@ In *GridReader.h*, (between the header guards) paste the following
 	    static void purge();
 	    cocos2d::Node* createNodeWithFlatBuffers(const flatbuffers::Table* nodeOptions);
 	};
-	
+>	
 Then in *GridReader.cpp* add the following code:
-
+>
 	#include "GridReader.h"
 	#include "Grid.h"
-
+>
 	using namespace cocos2d;
-
+>
 	static GridReader* _instanceGridReader = nullptr;
-
+>
 	GridReader* GridReader::getInstance()
 	{
 	    if (!_instanceGridReader)
@@ -341,12 +371,12 @@ Then in *GridReader.cpp* add the following code:
 	    }
 	    return _instanceGridReader;
 	}
-
+>
 	void GridReader::purge()
 	{
 	    CC_SAFE_DELETE(_instanceGridReader);
 	}
-
+>
 	Node* GridReader::createNodeWithFlatBuffers(const flatbuffers::Table *nodeOptions)
 	{
 	    Grid* node = Grid::create();
@@ -358,58 +388,63 @@ This is all boilerplate code - whenever you create a *Reader* class the code wil
 
 Finally, we have to register the `GridReader` with `CSLoader`. `CSLoader` is the class that reads the binary files exported by Cocos Studio to create instances of the objects in code. So by registering `GridReader` with it, we're saying, "hey, when you encounter an object with the custom class `Grid`, use this `GridReader` to create that object.
 
+> [action]
 In *HelloWorldScene.cpp*, *before* this line of code:
-
+>
 	auto rootNode = CSLoader::createNode("MainScene.csb");
-
+>
 add the following:
-
+>
 	CSLoader* instance = CSLoader::getInstance();
 	// Be very careful to do GridReader::getInstance, not GridReader::getInstance() which will crash
 	instance->registReaderObject("GridReader", (ObjectFactory::Instance) GridReader::getInstance);
-	
+>	
 Finally, at the top of *HelloWorldScene.cpp* next to the other includes, add:
-	
+>	
 	#include "GridReader.h"
 
 Test it!
 ===================
-
+> [action]
 Time to test the code! In your `onEnter()`, comment out `this->setupTouchHandling()` by adding two backslashes `//` in front of it. We haven't yet implemented `setupTouchHandling()` so leaving that in would create a compilation error. Next, in `setupGrid()`, add the following line after `gridArray.pushBack(creature);`
-
+>
 	creature->setIsAlive(true);
-
+>
 This will make the creatures visible. Run the game! You should see something like this:
 
 ![image](gridTest.png)
 
+> [action]
 **Undo the changes you made in this section before moving on.**
 	
 Add Touch Handling
 ===================
 
-Time to add touch handling to the grid. Open *Grid.cpp*. Below `setupGrid`, add the following:
+Time to add touch handling to the grid. 
 
+> [action]
+Open *Grid.cpp*. Below `setupGrid`, add the following:
+>
 	void Grid::setupTouchHandling()
 	{
 	    auto touchListener = EventListenerTouchOneByOne::create();
-	    
+>	    
 	    touchListener->onTouchBegan = [&](Touch* touch, Event* event)
 	    {
 	        Sprite* gridSprite = this->getChildByName<Sprite*>("grid");
-	        
+>	        
 	        Vec2 gridTouchLocation = gridSprite->convertTouchToNodeSpace(touch);
-	        
+>	        
 	        Creature* touchedCreature = this->creatureForTouchLocation(gridTouchLocation);
-	        
+>	        
 	        if (touchedCreature)
 	        {
 	            touchedCreature->setIsAlive(!touchedCreature->getIsAlive());
 	        }
-	        
+>	        
 	        return true;
 	    };
-	    
+>	    
 	    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
 	}
 
@@ -426,18 +461,19 @@ Inside the block the first thing we do is get a reference to the grid sprite, as
 
 Then, after the block of code, we add the newly-created `touchListener` to the `EventDispatcher` so that it starts receiving touch events.
 
+> [action]
 Now it's time to code the `creatureForTouchLocation()` method that's called in the `onTouchBegan` block. It should take a position `Vec2` as input, and use it to determine if there's a `Creature` there, and if there is, return it. It looks like this:
-
+>
 	Creature* Grid::creatureForTouchLocation(Vec2 touchLocation)
 	{
 	    if (touchLocation.x < 0.0f || touchLocation.y < 0.0f)
 	    {
 	        return nullptr;
 	    }
-	    
+>	    
 	    int row = touchLocation.y / cellHeight;
 	    int col = touchLocation.x / cellWidth;
-	    
+>	    
 	    if (this->isValidIndex(row, col))
 	    {
 	        return gridArray.at(this->indexForRowColumn(row, col));
@@ -450,22 +486,26 @@ Now it's time to code the `creatureForTouchLocation()` method that's called in t
 
 First we check if either the x-coordinate or y-coordinate of the touch is `< 0.0f` . If either of those are true, the touch is off the grid, so we return a null pointer. Next we figure out the row and column of the touch based on the cell heights and widths. If the row and column in question are valid `isValidIndex(row, col)` then we return the creature at that index in the `gridArray`, using `indexForRowColumn(row, col)`. Otherwise we return a null pointer again.
 
-This method uses two more uncoded methods, so let's make those. Fortunately, they're simple. Here's `isValidIndex(row, column)`. It should return true if the parameters passed for row and column are within the amount of rows and columns we have:
+This method uses two more uncoded methods, so let's make those. Fortunately, they're simple. 
 
+> [action]
+Here's `isValidIndex(row, column)`. It should return true if the parameters passed for row and column are within the amount of rows and columns we have:
+>
 	bool Grid::isValidIndex(int row, int col)
 	{
 	    return (row >= 0 && row < ROWS) && (col >= 0 && col < COLUMNS);
 	}
-	
+>	
 Next, here's `indexForRowColumn(row, col)`. This takes a row and column as parameters, and returns the integer index for that `Creature` in our one-dimensional `gridArray` array.
-
+>
 	int Grid::indexForRowColumn(int row, int col)
 	{
 	    return row * COLUMNS + col;
-	}
-	
-Run your game and try tapping on the grid. You should see creatures
-coming to life and dying where you tap!
+	}	
+>
+Run your game and try tapping on the grid. 
+
+You should see creatures coming to life and dying where you tap!
 
 Set Up HelloWorldScene
 ======================
@@ -477,46 +517,50 @@ In *HelloWorldScene.cpp* we will:
 -   implement a `play` method that starts the timer
 -   implement a `pause` method that stops the timer
 
+> [action]
 But first, go to *HelloWorldScene.h*, and add the following after the `public:` method declarations:
-
+>
 	private:
 	    Grid* grid;
 	    cocos2d::ui::Text* populationCount;
 	    cocos2d::ui::Text* generationCount;
-	    
+>	    
 	    void play(Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
 	    void pause(Ref* pSender, cocos2d::ui::Widget::TouchEventType type);
 	    void step(float dt);
 
-Here we delare three instance variables, `grid`, `populationCount` and `generationCount`. We also declare three methods, `play`, `pause` and `step`. So that the compiler can see will be happy, add these to the `#include` at the top:
+Here we delare three instance variables, `grid`, `populationCount` and `generationCount`. We also declare three methods, `play`, `pause` and `step`. 
 
+> [action]
+So that the compiler can see will be happy, add these to the `#include` at the top:
+>
 	#include "ui/CocosGUI.h"
 	#include "Grid.h"
-	    
+>	    
 Now, go to *HelloWorldScene.cpp*
-
+>
 Directly below this line:
-
+>
 	auto rootNode = CSLoader::createNode("MainScene.csb");
-	
+>	
 And above this line:
-
+>
 	addChild(rootNode);
-	
+>	
 Add the following:
-
+>
     auto leftPanel = rootNode->getChildByName("leftPanel");
     auto rightPanel = rootNode->getChildByName("rightPanel");
-    
+>   
     grid = rightPanel->getChildByName<Grid*>("gridNode");
-    
+>    
     auto balloon = leftPanel->getChildByName("balloon");
     generationCount = balloon->getChildByName<cocos2d::ui::Text*>("generationCount");
     populationCount = balloon->getChildByName<cocos2d::ui::Text*>("populationCount");
-    
+>   
     cocos2d::ui::Button* playButton = leftPanel->getChildByName<cocos2d::ui::Button*>("btnPlay");
     cocos2d::ui::Button* pauseButton = leftPanel->getChildByName<cocos2d::ui::Button*>("btnPause");
-    
+>    
     playButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::play, this));
     pauseButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::pause, this));
 
@@ -524,24 +568,28 @@ Most of this code is just grabbing references to the various objects we created 
 
 Then we grab references to the `playButton` and `pauseButton` and tell them that, upon being clicked, they should call the `play` and `pause` methods.
 
+> [action]
 Let's implement those methods:
-
+>
 	void HelloWorld::play(Ref* pSender, ui::Widget::TouchEventType type)
 	{
 	    this->schedule(CC_SCHEDULE_SELECTOR(HelloWorld::step), 0.5f);
 	}
-
+>
 	void HelloWorld::pause(Ref* pSender, ui::Widget::TouchEventType type)
 	{
 	    this->unschedule(CC_SCHEDULE_SELECTOR(HelloWorld::step));
 	}
 
-These use the Cocos2d-x scheduler to `schedule` and `unschedule` the `step` method, telling it to call it every half second. So lets code `step`:
+These use the Cocos2d-x scheduler to `schedule` and `unschedule` the `step` method, telling it to call it every half second. 
 
+> [action]
+So lets code `step`:
+>
 	void HelloWorld::step(float dt)
 	{
 	    grid->evolveStep();
-	    
+>	    
 	    generationCount->setString(std::to_string(grid->getGenerationCount()));
 	    populationCount->setString(std::to_string(grid->getPopulationCount()));
 	}
@@ -553,11 +601,13 @@ Grid Accessors
 
 `Grid` has two public properties, `populationCount` and `generationCount`. We haven't yet coded the accessors, but fortunately they're easy!
 
+> [action]
+> 
 	int Grid::getPopulationCount()
 	{
 	    return populationCount;
 	}
-
+>
 	int Grid::getGenerationCount()
 	{
 	    return generationCount;
@@ -576,49 +626,51 @@ the `Creature` on that cell dies or stays dead. If it has exactly 3 neighbors an
 So we need to go through every Creature, count the number of live
 neighbors it has, and update whether it is alive or dead.
 
+> [action]
 Add the `evolveStep()` declaration:
-
+>
 	void Grid::evolveStep()
 	{
-
+>
 	}
-
+>
 Fill your `evolveStep()` method with the following code:
-
+>
     //update each Creature's neighbor count
     this->updateNeighborCount();
-    
+>   
     //update each Creature's state
     this->updateCreatures();
-    
+>    
     //update the generation so the label's text will display the correct generation
     generationCount++;
 
 Once we fill out the `updateNeighborCount()` and `updateCreatures()` methods, we're
 done!
 
+> [action]
 Declare `updateNeighborCount()` in your *Grid.cpp*. It takes no parameters and has no return type.  Fill it with the following code:
-
+>
     for (int row = 0; row < ROWS; ++row)
     {
         for (int col = 0; col < COLUMNS; ++col)
         {
             int currentCreatureIndex = this->indexForRowColumn(row, col);
-            
+>           
             Creature* currentCreature = gridArray.at(currentCreatureIndex);
             currentCreature->setLivingNeighborsCount(0);
-            
+>            
             for (int nRow = row - 1; nRow <= row + 1; ++nRow)
             {
                 for (int nCol = col - 1; nCol <= col + 1; ++nCol)
                 {
                     bool indexValid = this->isValidIndex(nRow, nCol);
-                    
+>                   
                     if (indexValid && !(nRow == row && nCol == col))
                     {
                         int neighborIndex = this->indexForRowColumn(nRow, nCol);
                         Creature* neighbor = gridArray.at(neighborIndex);
-                        
+>                       
                         if (neighbor->getIsAlive())
                         {
                             int livingNeighbors = currentCreature->getLivingNeighborsCount();
@@ -630,8 +682,7 @@ Declare `updateNeighborCount()` in your *Grid.cpp*. It takes no parameters and h
         }
     }
 
-Now it's your turn to write `updateCreatures()`. Create it in *Grid.cpp*. You will need to create a double-nested for-loop like we did in `countNeighbors()` to access every creature in the grid. Look over the code in `countNeighbors()` if you need a refresher on
-how to do that.
+Now it's your turn to write `updateCreatures()`. Create it in *Grid.cpp*. You will need to create a double-nested for-loop like we did in `countNeighbors()` to access every creature in the grid. Look over the code in `countNeighbors()` if you need a refresher on how to do that.
 
 Next you need to create an if / else if statement. In the if statement,
 check if the Creature's `livingNeighbors` property is set to 3. If it is,
@@ -646,8 +697,10 @@ the game run properly. Try some of [these popular
 patterns](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Examples_of_patterns)
 and see if they behave as expected.
 
-The only thing that should be missing is the count of live creatures. To
-make the label update properly, reset the `populationCount` property at the
+The only thing that should be missing is the count of live creatures. 
+
+> [action]
+To make the label update properly, reset the `populationCount` property at the
 beginning of your `updateCreatures()` method by setting it to 0. Create an if statement at the end of the for loop that checks if the creature is alive, if they are you need to increment `populationCount` by 1.
 
 Run the game again - you should be done!
