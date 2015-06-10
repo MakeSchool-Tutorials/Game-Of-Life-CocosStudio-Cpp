@@ -26,6 +26,10 @@ Hit the delete key - you should end up with a black screen. You just deleted the
 
 In the Resources Browser in the left panel, find *HelloWorld.png* and delete it - you don't need it anymore.
 
+Check to make sure that your design resolution (in the top-left hand corner) is set to *960 x 640*. This is the resolution at which we'll design the game in Cocos Studio.
+
+![image](displayResolution.png)
+
 Add a Background Image
 ======================
 
