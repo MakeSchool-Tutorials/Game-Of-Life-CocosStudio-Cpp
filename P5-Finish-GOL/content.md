@@ -541,6 +541,13 @@ the `Creature` on that cell dies or stays dead. If it has exactly 3 neighbors an
 So we need to go through every Creature, count the number of live
 neighbors it has, and update whether it is alive or dead.
 
+Add the `evolveStep()` declaration:
+
+	void Grid::evolveStep()
+	{
+
+	}
+
 Fill your `evolveStep()` method with the following code:
 
     //update each Creature's neighbor count
