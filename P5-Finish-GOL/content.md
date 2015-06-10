@@ -352,7 +352,9 @@ add the following:
 	// Be very careful to do GridReader::getInstance, not GridReader::getInstance() which will crash
 	instance->registReaderObject("GridReader", (ObjectFactory::Instance) GridReader::getInstance);
 	
-Finally, at the top of *HelloWorldScene.cpp* next to the other includes, add `#include "GridReader.h"`.
+Finally, at the top of *HelloWorldScene.cpp* next to the other includes, add:
+	
+	#include "GridReader.h"
 
 Test it!
 ===================
