@@ -466,7 +466,7 @@ Directly below this line:
 	
 And above this line:
 
-	this->addChild(rootNode);
+	addChild(rootNode);
 	
 Add the following:
 
