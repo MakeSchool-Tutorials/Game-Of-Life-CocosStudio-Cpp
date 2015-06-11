@@ -24,8 +24,27 @@ Run the installer.
 
 It should place a folder called Cocos in your Applications folder. 
 
+
+Some More Setup
+===============
+
+Before you can create your first project, you'll first have to do some setup.  
 > [action]
-Open that folder and run Cocos.app.
+Open the Cocos App:
+
+![image](cocosapp.png)
+
+> [action]
+Go to the store, and download the latest version of the Cocos2d-x framework.
+
+![image](downloadCocosFramework.png)
+
+This will download precompiled versions of the Cocos2d-x game engine, which will be used in your new project.
+
+> [action]
+Install the downloaded Cocos Framework:
+
+![image](installFramework.png)
 
 Cocos Studio Basics
 ====================

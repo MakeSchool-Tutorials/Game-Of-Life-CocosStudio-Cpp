@@ -3,23 +3,8 @@ title: Create a New Project in Cocos Studio
 slug: create-new-project-cocos-studio
 ---       
 
-Before you can create your first project, you'll first have to do some setup.  
-> [action]
-Open the Cocos App:
-
-![image](cocosapp.png)
-
-> [action]
-Go to the store, and download the latest version of the Cocos2d-x framework.
-
-![image](downloadCocosFramework.png)
-
-This will download precompiled versions of the Cocos2d-x game engine, which will be used in your new project.
-
-> [action]
-Install the downloaded Cocos Framework:
-
-![image](installFramework.png)
+Create a New Project
+====================
 
 Now we're set up and ready to create a new Cocos Studio project:
 
