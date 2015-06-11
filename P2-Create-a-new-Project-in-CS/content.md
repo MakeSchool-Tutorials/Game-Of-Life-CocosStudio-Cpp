@@ -31,7 +31,7 @@ like this:
 
 ![image](directoryStructure.png)
 
-SpriteBuilder created a new folder called *GameOfLife*. Inside it
+Cocos Studio created a new folder called *GameOfLife*. Inside it
 is a Cocos Studio project named *GameOfLife.ccs*.  It also created an Eclipse-based Android project in *proj.android*, an OSX and iOS Xcode project in *proj.ios_mac* and a Windows and Windows Phone Visual Studio project in *proj.win32*. The C++ classes you'll be writing are stored in the *Classes* directory, which is read by all three projects.  The assets and resources used by your game (like images, fonts, sounds and Cocos Studio binary files) are kept in the *Resources* directory.
 
 The default Cocos Studio project comes with one scene, *MainScene.csd*. Your empty project should look like this:
