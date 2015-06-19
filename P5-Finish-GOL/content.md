@@ -202,6 +202,7 @@ To do that, first click the root `Node` (the topmost object in the timeline). Th
 
 Now we can create a `Grid` class to create custom behaviors for our *Grid.csd* object.
 
+> [action]
 **Make sure to save and publish your Cocos Studio project!**
 
 
@@ -700,8 +701,7 @@ and see if they behave as expected.
 The only thing that should be missing is the count of live creatures. 
 
 > [action]
-To make the label update properly, reset the `populationCount` property at the
-beginning of your `updateCreatures()` method by setting it to 0. Create an if statement at the end of the for loop that checks if the creature is alive, if they are you need to increment `populationCount` by 1.
+To make the label update properly, reset the `populationCount` property at the beginning of your `updateCreatures()` method by setting it to 0. Create an if statement at the end of the for loop that checks if the creature is alive, if they are you need to increment `populationCount` by 1.
 
 Run the game again - you should be done!
 

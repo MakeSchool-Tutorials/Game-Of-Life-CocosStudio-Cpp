@@ -13,7 +13,7 @@ Getting Started
 > [action]
 Get started by downloading our [art pack](Assets.zip) for this game.
 
-> [action]
+>
 After you have unzipped it, drag the *Assets* folder into your
 Cocos Studio project onto the Resources Browser in left panel. Alternatively you can right click in the Resources Browser and *Import Resources...*.
 	
@@ -26,11 +26,9 @@ After importing the assets, your Resources Browser should look like this
 > [action]
 Now open *MainScene.csd* and highlight Default in the timeline.
 Hit the delete key - you should end up with a black screen. You just deleted the default background image, but note that you cannot delete the root Scene. 
-
-> [action]
+>
 In the Resources Browser in the left panel, find *HelloWorld.png* and delete it - you don't need it anymore.
-
-> [action]
+>
 Check to make sure that your design resolution (in the top-left hand corner) is set to *960 x 640*. This is the resolution at which we'll design the game in Cocos Studio.
 
 ![image](displayResolution.png)
@@ -55,7 +53,7 @@ Now set the background position to be expressed in *%Relative percentage of pare
 
 This will set the background's position to (50, 50) of the parent node. By expressing the position of the background in percentages instead of absolute coordinates we make our layout more flexible. That's because, even if the parent node's size changes, the background will remain in the middle.
 
-< [action]
+> [action]
 Finally, set the background *scale* to 120% horizontal and 120% vertical. 
 This will ensure that the background is large enough to cover the screen on all iPhones.
 
@@ -108,7 +106,7 @@ Add the Grid to the MainScene
 > [action]
 Now open *MainScene.csd* again by double clicking on it. 
 
-> [action]
+>
 Drag *Grid.csd* onto the stage. This will add the grid to the
 MainScene. Rename it to gridNode. In the timeline, drag gridNode to become a child of rightPanel. 
 
@@ -125,7 +123,7 @@ Great! Now it is time to set up your game's UI! We're going to add the play and 
 > [action]
 Drag two buttons (you can find them in the Widgets section of the Objects Browser) into the scene. Name one *btnPlay* and the other *btnPause*. Make sure they both have an anchor point of (0.5, 0.5).  Set the size of both to (140px, 76px). Position btnPlay at (50%, 88%) and btnPause at (50%, 75%). Delete the default "Button" text for both.
 
-> [action]
+>
 Double click the *Normal State* property for btnPlay. Navigate to and select play.png. Alternatively, you can drag and drop the images from the resources panel over to *Normal State* property on the properties panel.
 
 ![image](btnPlayNavigation.png)
@@ -133,7 +131,7 @@ Double click the *Normal State* property for btnPlay. Navigate to and select pla
 > [action]
 For *Press State* select play-pressed.png. Do the same for btnPause with pause.png and pause-pressed.png.
 
-> [action]
+>
 Now go to your resources and add *balloon.png* and *microscope.png* to leftPanel. Set the anchor points of both to (0.5, 0.5). Name the balloon sprite "balloon" without the quotes.  Position balloon at (50%, 52%). Position the microscope at (50%, 20%).  
 
 When you are done it should look like this:
