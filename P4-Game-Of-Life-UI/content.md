@@ -11,6 +11,7 @@ Getting Started
 ===============
 
 > [action]
+> 
 Get started by downloading our [art pack](Assets.zip) for this game.
 
 >
@@ -54,8 +55,7 @@ Now set the background position to be expressed in *%Relative percentage of pare
 This will set the background's position to (50, 50) of the parent node. By expressing the position of the background in percentages instead of absolute coordinates we make our layout more flexible. That's because, even if the parent node's size changes, the background will remain in the middle.
 
 > [action]
-Finally, set the background *scale* to 120% horizontal and 120% vertical. 
-This will ensure that the background is large enough to cover the screen on all iPhones.
+Finally, set the background *scale* to 120% horizontal and 120% vertical. This will ensure that the background is large enough to cover the screen on all iPhones.
 
 ![image](positionRelative.png)
 
@@ -87,17 +87,15 @@ We will create the grid in a separate .csd file because it will be linked to a c
 
 > [action]
 Create a new .csd file *File --> New File* of type *Node* and call it *Grid*.
-
+>
 ![image](newGrid.png)
-
-> [action]
+>
 Find Grid.png in the Resource Browser and drag it into the your newly created Node. Set the position to (0, 0) to center it.
-
+>
 ![image](gridImage.png)
-
-> [action]
+>
 Change the name of the newly-dragged grid sprite to *grid*.
-
+>
 **Make sure to save your newly created file (cmd + s) or your grid will not display correctly later on!**
 
 Add the Grid to the MainScene
@@ -105,14 +103,12 @@ Add the Grid to the MainScene
 
 > [action]
 Now open *MainScene.csd* again by double clicking on it. 
-
 >
 Drag *Grid.csd* onto the stage. This will add the grid to the
 MainScene. Rename it to gridNode. In the timeline, drag gridNode to become a child of rightPanel. 
-
+>
 ![image](gridNodeChild.png)
-
-> [action]
+>
 Set the position of gridNode to (50%, 50%).
 
 Game UI
@@ -122,15 +118,12 @@ Great! Now it is time to set up your game's UI! We're going to add the play and 
 
 > [action]
 Drag two buttons (you can find them in the Widgets section of the Objects Browser) into the scene. Name one *btnPlay* and the other *btnPause*. Make sure they both have an anchor point of (0.5, 0.5).  Set the size of both to (140px, 76px). Position btnPlay at (50%, 88%) and btnPause at (50%, 75%). Delete the default "Button" text for both.
-
 >
 Double click the *Normal State* property for btnPlay. Navigate to and select play.png. Alternatively, you can drag and drop the images from the resources panel over to *Normal State* property on the properties panel.
-
+>
 ![image](btnPlayNavigation.png)
-
-> [action]
+>
 For *Press State* select play-pressed.png. Do the same for btnPause with pause.png and pause-pressed.png.
-
 >
 Now go to your resources and add *balloon.png* and *microscope.png* to leftPanel. Set the anchor points of both to (0.5, 0.5). Name the balloon sprite "balloon" without the quotes.  Position balloon at (50%, 52%). Position the microscope at (50%, 20%).  
 
@@ -194,6 +187,7 @@ Great!
 
 Copy Resources
 =======================
+
 > [action]
 Now save, and publish to Xcode.
 

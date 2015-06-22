@@ -190,6 +190,7 @@ Now we're done implementing `Creature`!
 
 Set the Grid Custom Class
 =========================
+
 > [action]
 Flip back to your Cocos Studio project, and open *Grid.csd*.
 
@@ -254,8 +255,9 @@ Just like in the `Creature` class the first two methods are `CREATE_FUNC()` and 
 
 Notice that the 5 declarations directly below `protected` are variables, and that the following 7 declarations are methods. When making declarations, it's a good idea to group variables and methods separately to make your code easy to read.
 
-Setup the Grid
+Set Up the Grid
 ===================
+
 > [action]
 Switch over to *Grid.cpp* so that we can begin to implement the grid. Directly under `#include "Grid.h"` type the following:
 >
@@ -339,6 +341,7 @@ Add the GridReader
 ===================
 
 You should recall that when we created *Grid.csd* in Cocos Studio, we assigned it the custom class *Grid*. Cocos2d-x requires that every custom class have an associated *Reader* class which is used to link up the Cocos Studio object with its associated code. 
+
 > [action]
 Create a new C++ file and call it *GridReader*.
 >
@@ -406,6 +409,7 @@ Finally, at the top of *HelloWorldScene.cpp* next to the other includes, add:
 
 Test it!
 ===================
+
 > [action]
 Time to test the code! In your `onEnter()`, comment out `this->setupTouchHandling()` by adding two backslashes `//` in front of it. We haven't yet implemented `setupTouchHandling()` so leaving that in would create a compilation error. Next, in `setupGrid()`, add the following line after `gridArray.pushBack(creature);`
 >
@@ -507,6 +511,7 @@ Next, here's `indexForRowColumn(row, col)`. This takes a row and column as param
 Run your game and try tapping on the grid. 
 
 You should see creatures coming to life and dying where you tap!
+
 
 Set Up HelloWorldScene
 ======================
