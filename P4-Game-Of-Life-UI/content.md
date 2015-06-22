@@ -12,7 +12,7 @@ Getting Started
 
 > [action]
 > 
-Get started by downloading our [art pack](https://raw.githubusercontent.com/MakeSchool-Tutorials/Game-Of-Life-CocosStudio-Cpp/blob/master/P4-Game-Of-Life-UI/Assets.zip) for this game.
+Get started by downloading our [art pack](https://raw.githubusercontent.com/MakeSchool-Tutorials/Game-Of-Life-CocosStudio-Cpp/master/P4-Game-Of-Life-UI/Assets.zip) for this game.
 
 >
 After you have unzipped it, drag the *Assets* folder into your
