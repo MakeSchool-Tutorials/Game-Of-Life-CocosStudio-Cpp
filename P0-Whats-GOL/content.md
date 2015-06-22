@@ -16,17 +16,15 @@ cool shapes morphing. Consider this your initiation :p
 TL;DR
 =====
 
-There is a grid of cells. A cell is either alive or dead. If a cell has
-less than two live neighbors, it dies. If it has more than three
+There is a grid of cells. A cell is either alive or dead. If a cell has less than two live neighbors, it dies. If it has more than three
 neighbors, it dies. If a live cell has exactly two or three neighbors,
-it stays alive and if a dead cell has exactly three neighbors, it comes
-to life.
+it stays alive and if a dead cell has exactly three neighbors, it comes to life.
 
-Try placing a few live cells and then hitting the next button to run one
-round. The Wikipedia article has some great examples of common patterns
-that produce cool effects. Press the animate button to continuously run
-the game. Play around with it a little and come back when you're ready.
-We'll wait :)
+Try placing a few live cells and then hitting the next button to run one round. The Wikipedia article has some great examples of common patterns that produce cool effects. Press the animate button to continuously run the game. Play around with it a little and come back when you're ready.
+
+You can check it out [here](https://jsfiddle.net/makeschool_dion/zose7rv3/embedded/result/).
+
+
 
 <!--
  Original source code written by Ron de Jong, 20 Oct. 2011 at http://www.codeproject.com/Articles/271154/HTML5-Game-of-Multi-Life.
@@ -34,10 +32,12 @@ We'll wait :)
  Licensed under The Code Project Open License (CPOL): http://www.codeproject.com/info/cpol10.aspx.
  Latest version at date of access was CPOL version 1.02.
 
- Source code modified by Brian Chu for MakeGamesWithUs Inc.
+ Source code modified by Brian Chu for makegameswithus, inc.
  Canvas size made smaller
  Dropdown menu removed. Cells can only be magenta colored.
  -->
+ 
+<!-- Not working in SA currently
 
 <style type="text/css">
 select
@@ -153,13 +153,13 @@ button
 <div id='params'>
 <button onclick="clearGame()">Clear</button>
 <button onclick="advance()" >Next</button>
-<button id="btnAnimate" onclick="animate()">Animate</button>
+<button id="btnAnimate" onclick="animation()">Animate</button>
 <span id="generation" style="width: 130">Generation: 0</span>
 <span id="population" style="width: 130">Population: 0</span>
 </div>
 
 <div style="position:relative; height: 401px;">
-<canvas id='canvas2' width='401' height='401' on></canvas> <!-- Lowest in Z-order - provides background -->
+<canvas id='canvas2' width='401' height='401' on></canvas> 
 <canvas id='canvas1' width='401' height='401' on>Canvas is not supported by this browser.</canvas>
 </div>
 
@@ -182,7 +182,7 @@ function clearGame() {
     updatePopulation();
 }
 
-function animate() {
+function animation() {
     _animate = !_animate;
     if (_animate) {
         advance();
@@ -309,3 +309,5 @@ function updatePopulation() {
     population.textContent = "Population: " + String(_population);
 }
 </script>
+
+-->
