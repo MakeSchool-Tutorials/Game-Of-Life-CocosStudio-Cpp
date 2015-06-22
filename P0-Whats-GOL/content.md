@@ -34,7 +34,7 @@ We'll wait :)
  Licensed under The Code Project Open License (CPOL): http://www.codeproject.com/info/cpol10.aspx.
  Latest version at date of access was CPOL version 1.02.
 
- Source code modified by Brian Chu for MakeGamesWithUs Inc.
+ Source code modified by Brian Chu for makegameswithus, inc.
  Canvas size made smaller
  Dropdown menu removed. Cells can only be magenta colored.
  -->
@@ -153,7 +153,7 @@ button
 <div id='params'>
 <button onclick="clearGame()">Clear</button>
 <button onclick="advance()" >Next</button>
-<button id="btnAnimate" onclick="animate()">Animate</button>
+<button id="btnAnimate" onclick="animation()">Animate</button>
 <span id="generation" style="width: 130">Generation: 0</span>
 <span id="population" style="width: 130">Population: 0</span>
 </div>
@@ -182,7 +182,7 @@ function clearGame() {
     updatePopulation();
 }
 
-function animate() {
+function animation() {
     _animate = !_animate;
     if (_animate) {
         advance();
